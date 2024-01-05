@@ -1,0 +1,99 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow&family=Barlow+Condensed&family=Bellefair&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#root,
+.app {
+  color: #fff;
+  height: 100%;
+  width: 100%;
+  font-family: "Bellefair", serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
+  color: #fff;
+}
+
+h1 {
+  font-size: 150px;
+}
+
+h2 {
+  font-size: 100px;
+}
+
+h3 {
+  font-size: 56px;
+}
+
+h4 {
+  font-size: 32px;
+}
+
+h5 {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 28px;
+}
+
+p {
+  font-family: "Barlow", sans-serif;
+  font-size: 18px;
+  line-height: 32px;
+}
+
+.home-desktop {
+  background-image: url(./assets/images/home/background-desktop.jpg);
+}
+
+.home-tablet {
+  background-image: url(./assets/images/home/background-tablet.jpg);
+}
+
+.home-mobile {
+  background-image: url(./assets/images/home/background-mobile.jpg);
+}
+
+.destination-desktop {
+  background-image: url(./assets/images/destination/background-destination-desktop.jpg);
+}
+
+.destination-tablet {
+  background-image: url(./assets/images/destination/background-destination-tablet.jpg);
+}
+
+.destination-mobile {
+  background-image: url(./assets/images/destination/background-destination-mobile.jpg);
+}
+
+.crew-desktop {
+  background-image: url(./assets/images/crew/background-crew-desktop.jpg);
+}
+
+.crew-tablet {
+  background-image: url(./assets/images/crew/background-crew-tablet.jpg);
+}
+
+.crew-mobile {
+  background-image: url(./assets/images/crew/background-crew-mobile.jpg);
+}
+
+.technology-desktop {
+  background-image: url(./assets/images/technology/background-technology-desktop.jpg);
+}
+
+.technology-tablet {
+  background-image: url(./assets/images/technology/background-technology-tablet.jpg);
+}
+
+.technology-mobile {
+  background-image: url(./assets/images/technology/background-technology-mobile.jpg);
+}
