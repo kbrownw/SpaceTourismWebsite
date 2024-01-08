@@ -1,14 +1,14 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { SelectedPage } from "./shared/types";
-import { ScreenSizeContext } from "./context/ScreenSizeContext";
-import { ScreenSize } from "./shared/types";
+import { useScreenSizeContext } from "./context/ScreenSizeContext";
+import NavBar from "./components/navBar/NavBar";
+import { Routes } from "react-router-dom";
 
 function App() {
   const [selectedPage, setSelectedPage] = useState<SelectedPage>(
     SelectedPage.Home
   );
-  const { isLargeScreen, isMediumScreen } =
-    useContext<ScreenSize>(ScreenSizeContext);
+  const { isLargeScreen, isMediumScreen } = useScreenSizeContext();
   const [currentBackground, setCurrentBackground] = useState<string>("");
 
   useEffect(() => {
@@ -23,8 +23,9 @@ function App() {
 
   return (
     <>
-      <main className={`app bg-cover ${currentBackground}`}>
-        <h1>Hello World</h1>
+      <main className={`app bg-cover bg-dark-blue ${currentBackground}`}>
+        <NavBar selectedPage={selectedPage} setSelectedPage={setSelectedPage} />
+        <Routes></Routes>
       </main>
     </>
   );
