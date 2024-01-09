@@ -6,6 +6,7 @@ import { useScreenSizeContext } from "../../context/ScreenSizeContext";
 import NavLink from "./NavLink";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
 
 type Props = {
   selectedPage: SelectedPage;
@@ -62,8 +63,9 @@ const NavBar = ({ selectedPage, setSelectedPage }: Props) => {
         </ul>
       )}
       {/* MOBILE MENU */}
+
       {!isLargeScreen && !isMediumScreen && (
-        <>
+        <AnimatePresence>
           {!toggleMenu ? (
             // HAMBURGER ICON
             <button
@@ -77,7 +79,15 @@ const NavBar = ({ selectedPage, setSelectedPage }: Props) => {
               />
             </button>
           ) : (
-            <div className="grid grid-rows-[150px_1fr] fixed w-3/5 h-full top-0 right-0 py-5 pl-10 pr-5 backdrop-blur-[40px] bg-white/[.04]">
+            // MODAL MENU
+            <motion.div
+              key="menu-modal"
+              initial={{ opacity: 0, x: "200px" }}
+              animate={{ opacity: 1, x: "0" }}
+              exit={{ opacity: 0, x: "200px" }}
+              transition={{ duration: 0.2 }}
+              className="grid grid-rows-[150px_1fr] fixed w-3/5 h-full top-0 right-0 py-5 pl-10 pr-5 backdrop-blur-[40px] bg-white/[.04] z-40"
+            >
               <button
                 className="justify-self-end w-[26px] h-[26px] mt-4"
                 onClick={() => setToggleMenu(!toggleMenu)}
@@ -127,9 +137,9 @@ const NavBar = ({ selectedPage, setSelectedPage }: Props) => {
                   </li>
                 </Link>
               </ul>
-            </div>
+            </motion.div>
           )}
-        </>
+        </AnimatePresence>
       )}
     </nav>
   );

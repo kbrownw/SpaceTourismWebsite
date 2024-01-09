@@ -18,7 +18,7 @@ const NavLink = ({ to, isSelected, clickFunction, number, text }: Props) => {
     <Link
       to={to}
       onClick={clickFunction}
-      className={`flex items-center h-full w-auto border-transparent border-2 hover:border-b-white/50 ${selectedBorder}`}
+      className={`flex items-center h-full w-auto border-transparent border-2 transition duration-500 hover:border-b-white/50 ${selectedBorder}`}
     >
       <li>
         <div>
