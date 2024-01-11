@@ -10,10 +10,6 @@ const Home = ({ setSelectedPage }: Props) => {
   return (
     <motion.section
       key="home-page"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
       className="flex flex-col min-h-fit items-center mx-auto mt-[108px] gap-24 pb-24 w-5/6  md:w-3/5 lg:flex-row lg:w-full lg:gap-[25%] lg:mt-[200px] lg:pl-36 lg:mx-0"
     >
       {/* TEXT SECTION */}

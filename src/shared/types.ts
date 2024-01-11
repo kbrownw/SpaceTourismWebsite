@@ -20,3 +20,14 @@ export interface Destinations {
   distance: string;
   travel: string;
 }
+
+export interface Crew {
+  name: string;
+  images: {
+    png: string;
+    webp: string;
+    alt?: string;
+  };
+  role: string;
+  bio: string;
+}

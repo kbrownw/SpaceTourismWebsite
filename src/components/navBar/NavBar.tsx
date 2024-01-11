@@ -35,21 +35,27 @@ const NavBar = ({ selectedPage, setSelectedPage }: Props) => {
           <NavLink
             to="/"
             isSelected={selectedPage === SelectedPage.Home}
-            clickFunction={() => setSelectedPage(SelectedPage.Home)}
+            clickFunction={() => {
+              setSelectedPage(SelectedPage.Home);
+            }}
             number="00"
             text="HOME"
           />
           <NavLink
             to="/destination"
             isSelected={selectedPage === SelectedPage.Destination}
-            clickFunction={() => setSelectedPage(SelectedPage.Destination)}
+            clickFunction={() => {
+              setSelectedPage(SelectedPage.Destination);
+            }}
             number="01"
             text="DESTINATION"
           />
           <NavLink
             to="/crew"
             isSelected={selectedPage === SelectedPage.Crew}
-            clickFunction={() => setSelectedPage(SelectedPage.Crew)}
+            clickFunction={() => {
+              setSelectedPage(SelectedPage.Crew);
+            }}
             number="02"
             text="CREW"
           />
@@ -99,7 +105,13 @@ const NavBar = ({ selectedPage, setSelectedPage }: Props) => {
                 />
               </button>
               <ul className="flex flex-col max-h-[300px] gap-10">
-                <Link to="/" onClick={() => setSelectedPage(SelectedPage.Home)}>
+                <Link
+                  to="/"
+                  onClick={() => {
+                    setSelectedPage(SelectedPage.Home);
+                    setToggleMenu(false);
+                  }}
+                >
                   <li>
                     <h5 className="text-[20px] tracking-[2.7px]">
                       <span className="font-bold">00</span> HOME
@@ -108,7 +120,10 @@ const NavBar = ({ selectedPage, setSelectedPage }: Props) => {
                 </Link>
                 <Link
                   to="/destination"
-                  onClick={() => setSelectedPage(SelectedPage.Destination)}
+                  onClick={() => {
+                    setSelectedPage(SelectedPage.Destination);
+                    setToggleMenu(false);
+                  }}
                 >
                   <li>
                     <h5 className="text-[20px] tracking-[2.7px]">
@@ -118,7 +133,10 @@ const NavBar = ({ selectedPage, setSelectedPage }: Props) => {
                 </Link>
                 <Link
                   to="/crew"
-                  onClick={() => setSelectedPage(SelectedPage.Crew)}
+                  onClick={() => {
+                    setSelectedPage(SelectedPage.Crew);
+                    setToggleMenu(false);
+                  }}
                 >
                   <li>
                     <h5 className="text-[20px] tracking-[2.7px]">
@@ -128,7 +146,10 @@ const NavBar = ({ selectedPage, setSelectedPage }: Props) => {
                 </Link>
                 <Link
                   to="/technology"
-                  onClick={() => setSelectedPage(SelectedPage.Technology)}
+                  onClick={() => {
+                    setSelectedPage(SelectedPage.Technology);
+                    setToggleMenu(false);
+                  }}
                 >
                   <li>
                     <h5 className="text-[20px] tracking-[2.7px]">
