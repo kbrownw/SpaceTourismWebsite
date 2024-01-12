@@ -52,7 +52,7 @@ const CelestialBody = ({ data, runAnimate, setRunAnimate }: Props) => {
     <motion.article
       key={currentData.name}
       ref={scope}
-      className="flex flex-col justify-center text-center gap-5 lg:items-start lg:text-left celestial-item"
+      className="flex flex-col h-[500px] align-top text-center gap-5 md:h-[400px] lg:h-auto lg:items-start lg:text-left celestial-item"
     >
       {/* PLANET NAME */}
       <h3 className="lg:text-[100px] celestial-item">

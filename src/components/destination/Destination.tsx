@@ -24,7 +24,7 @@ function Destination({ data }: Props) {
   const selected: string = "text-white border-b-white";
   const unSelected: string = "text-light-violet";
   const selectionDefault: string =
-    "text-[18px] border-transparent border-b-2 hover:border-b-white/50 py-3";
+    "text-[18px] py-3 border-transparent border-b-2 transition duration-500 hover:border-b-white/50 ";
   const [celestialBody, setCelestialBody] = useState<Destinations>(moonData);
   const { imagesPreloaded } = useImagePreloader(preloadSrcList);
 
@@ -56,9 +56,9 @@ function Destination({ data }: Props) {
           </AnimatePresence>
         </div>
       </div>
-      <div className="flex flex-col text-center justify-center w-[90%] md:mx-auto md:max-w-[80%] lg:w-1/2">
+      <div className="flex flex-col text-center justify-center md:mx-auto md:max-w-[80%] lg:w-1/2">
         {/* DATA SELECTION MENU */}
-        <div className="flex mx-auto justify-between gap-10 my-5 lg:justify-normal lg:mx-0">
+        <div className="flex mx-auto justify-between gap-7 my-5 md:gap-10 lg:justify-normal lg:mx-0">
           <button
             onClick={() => {
               setCelestialBody(moonData);
