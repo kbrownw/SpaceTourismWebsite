@@ -14,7 +14,7 @@ const CrewSelector = ({
   setRunAnimate,
 }: Props) => {
   const defaultClasses =
-    "py-2 px-2 rounded-full bg-white  transition duration-500 hover:opacity-50";
+    "py-2 px-2 rounded-full bg-white  transition duration-500 hover:opacity-50 tap:opacity-50";
   return (
     <div className="flex mx-auto my-7 gap-7 lg:ml-28 lg:self-end lg:col-start-1">
       <button

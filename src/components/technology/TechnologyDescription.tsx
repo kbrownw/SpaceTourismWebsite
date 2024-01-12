@@ -55,7 +55,7 @@ const TechnologyDescription = ({
   return (
     <div
       ref={scope}
-      className="text-center w-5/6 mx-auto mt-2 md:w-3/5 md:mb-20 lg:text-left lg:w-full lg:mt-0"
+      className="text-center w-5/6 h-[300px] mx-auto mt-2 mb-2 md:w-3/5 md:mb-20 lg:text-left lg:w-full lg:mt-0 lg:h-auto"
     >
       {/* Intro */}
       <h4 className="animate-item md:text-[48px] lg:text-[64px]">
