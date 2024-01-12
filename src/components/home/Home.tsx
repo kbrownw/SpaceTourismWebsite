@@ -13,7 +13,12 @@ const Home = ({ setSelectedPage }: Props) => {
       className="flex flex-col min-h-fit items-center mx-auto mt-[108px] gap-24 pb-24 w-5/6  md:w-3/5 lg:flex-row lg:w-full lg:gap-[25%] lg:mt-[200px] lg:pl-36 lg:mx-0"
     >
       {/* TEXT SECTION */}
-      <div className="flex flex-col basis-1/2 gap-6 text-center lg:max-w-[445px] lg:text-left">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className="flex flex-col basis-1/2 gap-6 text-center lg:max-w-[445px] lg:text-left"
+      >
         <h5 className="text-light-violet">SO, YOU WANT TO TRAVEL TO</h5>
         <h1>SPACE</h1>
         <p className=" text-light-violet">
@@ -22,7 +27,7 @@ const Home = ({ setSelectedPage }: Props) => {
           back, and relax because we’ll give you a truly out of this world
           experience!
         </p>
-      </div>
+      </motion.div>
       {/* EXPLORE */}
       <motion.div
         initial="rest"

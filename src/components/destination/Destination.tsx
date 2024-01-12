@@ -35,7 +35,7 @@ function Destination({ data }: Props) {
   return (
     <motion.section
       key="destination-page"
-      className="flex flex-col min-h-auto justify-center items-center w-5/6 mt-5 mx-auto md:items-start md:mx-14 lg:flex-row lg:gap-32 lg:mx-28"
+      className="flex flex-col min-h-auto justify-center items-center w-5/6 mt-5 mx-auto pb-20 md:items-start md:mx-14 lg:flex-row lg:gap-32 lg:mx-28 lg:pb-0"
     >
       <div className="w-full text-center md:text-left lg:w-1/2">
         {/* IMAGE */}

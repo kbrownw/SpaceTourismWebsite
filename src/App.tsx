@@ -5,7 +5,6 @@ import NavBar from "./components/navBar/NavBar";
 import { Routes, Route, useLocation } from "react-router-dom";
 import data from "./assets/data/data.json";
 import Home from "./components/home/Home";
-import { AnimatePresence } from "framer-motion";
 import Destination from "./components/destination/Destination";
 import PageTitle from "./components/pageTitles/PageTitle";
 import Crew from "./components/crew/CrewPage";
@@ -82,29 +81,27 @@ function App() {
   return (
     <>
       <main
-        className={`app min-h-[100vh] overflow-x-hidden bg-cover bg-dark-blue ${currentBackground} pb-20`}
+        className={`app min-h-[100vh] overflow-x-hidden bg-cover bg-dark-blue ${currentBackground}`}
       >
         <NavBar selectedPage={selectedPage} setSelectedPage={setSelectedPage} />
-        <AnimatePresence>
-          {selectedPage !== SelectedPage.Home && (
-            <PageTitle number={pageTitle.number} title={pageTitle.title} />
-          )}
+        {selectedPage !== SelectedPage.Home && (
+          <PageTitle number={pageTitle.number} title={pageTitle.title} />
+        )}
 
-          <Routes location={location} key={location.pathname}>
-            <Route
-              path="/"
-              element={<Home setSelectedPage={setSelectedPage} />}
-            ></Route>
-            <Route
-              path={`/${SelectedPage.Destination}`}
-              element={<Destination data={data.destinations} />}
-            ></Route>
-            <Route
-              path={`/${SelectedPage.Crew}`}
-              element={<Crew data={data.crew} />}
-            ></Route>
-          </Routes>
-        </AnimatePresence>
+        <Routes location={location} key={location.pathname}>
+          <Route
+            path="/"
+            element={<Home setSelectedPage={setSelectedPage} />}
+          ></Route>
+          <Route
+            path={`/${SelectedPage.Destination}`}
+            element={<Destination data={data.destinations} />}
+          ></Route>
+          <Route
+            path={`/${SelectedPage.Crew}`}
+            element={<Crew data={data.crew} />}
+          ></Route>
+        </Routes>
       </main>
     </>
   );

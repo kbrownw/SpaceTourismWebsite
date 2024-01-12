@@ -1,16 +1,14 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import AnoushehImage from "../../assets/images/crew/image-anousheh-ansari.png";
 import DouglasImage from "../../assets/images/crew/image-douglas-hurley.png";
 import MarkImage from "../../assets/images/crew/image-mark-shuttleworth.png";
 import VictorImage from "../../assets/images/crew/image-victor-glover.png";
-import { Crew, ScreenSize } from "../../shared/types";
+import { Crew } from "../../shared/types";
 import useImagePreloader from "../../hooks/useImagePreloader";
 import CrewImage from "./CrewImage";
-import {
-  ScreenSizeContext,
-  useScreenSizeContext,
-} from "../../context/ScreenSizeContext";
+import { useScreenSizeContext } from "../../context/ScreenSizeContext";
 import CrewSelector from "./CrewSelector";
+import CrewDescription from "./CrewDescription";
 
 const preloadSrcList: string[] = [
   AnoushehImage,
@@ -24,7 +22,6 @@ type Props = {
 };
 
 const CrewPage = ({ data }: Props) => {
-  const [currentData, setCurrentData] = useState<Crew[]>(data);
   const douglasData: Crew = data[0];
   const markData: Crew = data[1];
   const victorData: Crew = data[2];
@@ -39,7 +36,7 @@ const CrewPage = ({ data }: Props) => {
   }
 
   return (
-    <section className="grid lg:grid-cols-2">
+    <section className="relative grid lg:grid-cols-2 lg:items-stretch lg:justify-stretch lg:min-h-full lg:gap-y-16 lg:gap-x-14">
       {/* CREW IMAGE */}
       {crewData.name === douglasData.name && (
         <CrewImage source={DouglasImage} alt="douglas-hurley-image" />
@@ -68,7 +65,11 @@ const CrewPage = ({ data }: Props) => {
       {/*  */}
       {/* CREW DESCRIPTION */}
       <div className="md:row-start-1">
-        <h3>CREW DESCRIPTION</h3>
+        <CrewDescription
+          crewData={crewData}
+          runAnimate={runAnimate}
+          setRunAnimate={setRunAnimate}
+        />
       </div>
     </section>
   );
