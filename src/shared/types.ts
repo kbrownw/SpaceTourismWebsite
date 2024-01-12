@@ -31,3 +31,18 @@ export interface Crew {
   role: string;
   bio: string;
 }
+
+export enum TechNames {
+  LaunchVehicle = "Launch vehicle",
+  Spaceport = "Spaceport",
+  SpaceCapsule = "Space capsule",
+}
+
+export interface Technology {
+  name: string;
+  images: {
+    portrait: string;
+    landscape: string;
+  };
+  description: string;
+}

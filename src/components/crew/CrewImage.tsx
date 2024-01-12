@@ -12,7 +12,7 @@ const CrewImage = ({ source, alt }: Props) => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 1 }}
-      className="h-[275px] mx-auto mt-10 mb-0 md:row-start-3 md:h-[532px] lg:row-span-2 lg:col-start-2 lg:h-[654px] lg:mt-0 lg:absolute lg:top-14"
+      className="h-[275px] mx-auto mt-10 mb-0 md:row-start-3 md:h-[532px] lg:row-span-2 lg:col-start-2 lg:h-[700px] lg:mt-0 lg:absolute lg:top-2"
     >
       <img className="w-full h-full" src={source} alt={alt} />
     </motion.div>

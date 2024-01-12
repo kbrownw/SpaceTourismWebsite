@@ -8,6 +8,7 @@ import Home from "./components/home/Home";
 import Destination from "./components/destination/Destination";
 import PageTitle from "./components/pageTitles/PageTitle";
 import Crew from "./components/crew/CrewPage";
+import TechnologyPage from "./components/technology/TechnologyPage";
 
 interface PageTitle {
   number: string;
@@ -100,6 +101,10 @@ function App() {
           <Route
             path={`/${SelectedPage.Crew}`}
             element={<Crew data={data.crew} />}
+          ></Route>
+          <Route
+            path={`/${SelectedPage.Technology}`}
+            element={<TechnologyPage data={data.technology} />}
           ></Route>
         </Routes>
       </main>

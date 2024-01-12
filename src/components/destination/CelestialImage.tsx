@@ -11,7 +11,7 @@ const CelestialImage = ({ source, alt }: Props) => {
       <motion.img
         alt={alt}
         src={source}
-        className="w-full h-full max-w-[600px]"
+        className="w-full h-full max-w-[450px]"
         key={alt}
         initial={{ scale: 0.1, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
