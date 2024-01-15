@@ -1,12 +1,12 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { Destinations } from "../../shared/types";
 import { useState } from "react";
-import CelestialBody from "./CelestialBody";
+import DestinationDescription from "./DestinationDescription";
 import MoonImage from "../../assets/images/destination/image-moon.png";
 import MarImage from "../../assets/images/destination/image-mars.png";
 import EuropaImage from "../../assets/images/destination/image-europa.png";
 import TitanImage from "../../assets/images/destination/image-titan.png";
-import CelestialImage from "./CelestialImage";
+import DestinationImage from "./DestinationImage";
 import useImagePreloader from "../../hooks/useImagePreloader";
 
 interface Props {
@@ -15,7 +15,7 @@ interface Props {
 
 const preloadSrcList: string[] = [MoonImage, MarImage, EuropaImage, TitanImage];
 
-function Destination({ data }: Props) {
+function DestinationPage({ data }: Props) {
   const [runAnimate, setRunAnimate] = useState<boolean>(false);
   const moonData = data[0];
   const marsData = data[1];
@@ -33,25 +33,22 @@ function Destination({ data }: Props) {
   }
 
   return (
-    <motion.section
-      key="destination-page"
-      className="flex flex-col min-h-auto justify-center items-center w-5/6 mt-5 mx-auto pb-20 md:items-start md:mx-14 lg:flex-row lg:gap-32 lg:mx-28 lg:pb-0"
-    >
+    <section className="flex flex-col min-h-auto justify-center items-center w-5/6 mt-5 mx-auto pb-20 md:items-start md:mx-14 lg:flex-row lg:gap-32 lg:mx-28 lg:pb-0">
       <div className="w-full text-center md:text-left lg:w-1/2">
         {/* IMAGE */}
         <div className="w-2/3 my-10 mx-auto md:w-1/2 lg:w-full lg:px-20 lg:py-10">
           <AnimatePresence>
             {celestialBody.name === moonData.name && (
-              <CelestialImage source={MoonImage} alt="moon-image" />
+              <DestinationImage source={MoonImage} alt="moon-image" />
             )}
             {celestialBody.name === marsData.name && (
-              <CelestialImage source={MarImage} alt="mars-image" />
+              <DestinationImage source={MarImage} alt="mars-image" />
             )}
             {celestialBody.name === europaData.name && (
-              <CelestialImage source={EuropaImage} alt="europa-image" />
+              <DestinationImage source={EuropaImage} alt="europa-image" />
             )}
             {celestialBody.name === titanData.name && (
-              <CelestialImage source={TitanImage} alt="titan-image" />
+              <DestinationImage source={TitanImage} alt="titan-image" />
             )}
           </AnimatePresence>
         </div>
@@ -119,28 +116,28 @@ function Destination({ data }: Props) {
         {/* CELESTIAL BODY INFORMATION */}
         <AnimatePresence>
           {celestialBody.name === moonData.name && (
-            <CelestialBody
+            <DestinationDescription
               data={celestialBody}
               runAnimate={runAnimate}
               setRunAnimate={setRunAnimate}
             />
           )}
           {celestialBody.name === marsData.name && (
-            <CelestialBody
+            <DestinationDescription
               data={celestialBody}
               runAnimate={runAnimate}
               setRunAnimate={setRunAnimate}
             />
           )}
           {celestialBody.name === europaData.name && (
-            <CelestialBody
+            <DestinationDescription
               data={celestialBody}
               runAnimate={runAnimate}
               setRunAnimate={setRunAnimate}
             />
           )}
           {celestialBody.name === titanData.name && (
-            <CelestialBody
+            <DestinationDescription
               data={celestialBody}
               runAnimate={runAnimate}
               setRunAnimate={setRunAnimate}
@@ -148,8 +145,8 @@ function Destination({ data }: Props) {
           )}
         </AnimatePresence>
       </div>
-    </motion.section>
+    </section>
   );
 }
 
-export default Destination;
+export default DestinationPage;

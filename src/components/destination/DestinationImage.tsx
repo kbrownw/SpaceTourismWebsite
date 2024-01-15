@@ -5,7 +5,7 @@ type Props = {
   alt: string;
 };
 
-const CelestialImage = ({ source, alt }: Props) => {
+const DestinationImage = ({ source, alt }: Props) => {
   return (
     <>
       <motion.img
@@ -22,4 +22,4 @@ const CelestialImage = ({ source, alt }: Props) => {
   );
 };
 
-export default CelestialImage;
+export default DestinationImage;

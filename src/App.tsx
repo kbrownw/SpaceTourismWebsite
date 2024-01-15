@@ -5,9 +5,9 @@ import NavBar from "./components/navBar/NavBar";
 import { Routes, Route, useLocation } from "react-router-dom";
 import data from "./assets/data/data.json";
 import Home from "./components/home/Home";
-import Destination from "./components/destination/Destination";
+import DestinationPage from "./components/destination/DestinationPage";
 import PageTitle from "./components/pageTitles/PageTitle";
-import Crew from "./components/crew/CrewPage";
+import CrewPage from "./components/crew/CrewPage";
 import TechnologyPage from "./components/technology/TechnologyPage";
 
 interface PageTitle {
@@ -96,11 +96,11 @@ function App() {
           ></Route>
           <Route
             path={`/${SelectedPage.Destination}`}
-            element={<Destination data={data.destinations} />}
+            element={<DestinationPage data={data.destinations} />}
           ></Route>
           <Route
             path={`/${SelectedPage.Crew}`}
-            element={<Crew data={data.crew} />}
+            element={<CrewPage data={data.crew} />}
           ></Route>
           <Route
             path={`/${SelectedPage.Technology}`}
