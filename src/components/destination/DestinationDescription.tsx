@@ -16,24 +16,24 @@ const DestinationDescription = ({ data, celestialBody }: Props) => {
         animate="show"
         exit="leave"
         key={`${item.name}-description`}
-        className="flex flex-col h-[500px] align-top text-center gap-5 md:h-[400px] lg:h-auto lg:items-start lg:text-left animate-item"
+        className="flex flex-col h-[500px] align-top text-center gap-5 md:h-[400px] lg:h-auto lg:items-start lg:text-left"
       >
         {/* PLANET NAME */}
-        <motion.h3 variants={child} className="lg:text-[100px] animate-item">
+        <motion.h3 variants={child} className="lg:text-[100px]">
           {item.name.toUpperCase()}
         </motion.h3>
         {/* PLANET DESCRIPTION */}
         <motion.p
           variants={child}
-          className=" text-light-violet line leading-[25px] animate-item"
+          className=" text-light-violet line leading-[25px]"
         >
           {item.description}
         </motion.p>
-        <motion.div variants={child} className="w-full h-full animate-item">
+        <motion.div variants={child} className="w-full h-full">
           <hr className="opacity-[0.2515] my-8 lg:w-full" />
         </motion.div>
 
-        <div className="text-center md:flex md:justify-around lg:gap-24 lg:text-left animate-item">
+        <div className="text-center md:flex md:justify-around lg:gap-24 lg:text-left">
           {/* DISTANCE FROM EARTH */}
           <motion.div variants={child} className="celestial-ite">
             <h5 className="text-light-violet text-[18px]">AVG. DISTANCE</h5>
@@ -41,7 +41,7 @@ const DestinationDescription = ({ data, celestialBody }: Props) => {
           </motion.div>
 
           {/* TRAVEL TIME */}
-          <motion.div variants={child} className="pt-5 md:pt-0 animate-item">
+          <motion.div variants={child} className="pt-5 md:pt-0">
             <h5 className="text-light-violet text-[18px]">EST. TRAVEL TIME</h5>
             <h4>{item.travel}</h4>
           </motion.div>

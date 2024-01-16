@@ -4,10 +4,9 @@ import SpaceportPortrait from "../../assets/images/technology/image-spaceport-po
 import SpaceportLandscape from "../../assets/images/technology/image-spaceport-landscape.jpg";
 import SpaceCapsulePortrait from "../../assets/images/technology/image-space-capsule-portrait.jpg";
 import SpaceCapsuleLandscape from "../../assets/images/technology/image-space-capsule-landscape.jpg";
-import { TechNames, Technology } from "../../shared/types";
-import { useState, useEffect } from "react";
+import { Technology } from "../../shared/types";
 import useImagePreloader from "../../hooks/useImagePreloader";
-import { useAnimate } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useScreenSizeContext } from "../../context/ScreenSizeContext";
 
 const preloadSrcList: string[] = [
@@ -19,99 +18,63 @@ const preloadSrcList: string[] = [
   SpaceCapsuleLandscape,
 ];
 
+const portraitImages: string[] = [
+  LaunchVehiclePortrait,
+  SpaceportPortrait,
+  SpaceCapsulePortrait,
+];
+
+const landscapeImages: string[] = [
+  LaunchVehicleLandscape,
+  SpaceportLandscape,
+  SpaceCapsuleLandscape,
+];
+
 type Props = {
+  data: Technology[];
   techDataName: Technology["name"];
-  runAnimate: boolean;
-  setRunAnimate: (value: boolean) => void;
 };
 
-const TechnologyImage = ({
-  techDataName,
-  runAnimate,
-  setRunAnimate,
-}: Props) => {
-  const [currentDataName, setCurrentDataName] =
-    useState<Technology["name"]>(techDataName);
+const TechnologyImage = ({ data, techDataName }: Props) => {
   const { imagesPreloaded } = useImagePreloader(preloadSrcList);
-  const [scope, animate] = useAnimate();
-  const { isMediumScreen, isLargeScreen } = useScreenSizeContext();
-  const [source, setSource] = useState<string>("");
-  const [altText, setAltText] = useState<string>("");
+  const { isLargeScreen } = useScreenSizeContext();
 
-  const pickImage = (currentDataName: Technology["name"]) => {
-    // SELECT CORRENT IMAGE BASED ON SCREEN SIZE AND SELECTED DATA
-    if ((isMediumScreen && !isLargeScreen) || !isMediumScreen) {
-      if (currentDataName === TechNames.LaunchVehicle) {
-        setSource(LaunchVehicleLandscape);
-        setAltText(`${LaunchVehicleLandscape} image`);
-      }
-      if (currentDataName === TechNames.Spaceport) {
-        setSource(SpaceportLandscape);
-        setAltText(`${SpaceportLandscape} image`);
-      }
-      if (currentDataName === TechNames.SpaceCapsule) {
-        setSource(SpaceCapsuleLandscape);
-        setAltText(`${SpaceCapsuleLandscape} image`);
-      }
-    } else {
-      if (currentDataName === TechNames.LaunchVehicle) {
-        setSource(LaunchVehiclePortrait);
-        setAltText(`${LaunchVehiclePortrait} image`);
-      }
-      if (currentDataName === TechNames.Spaceport) {
-        setSource(SpaceportPortrait);
-        setAltText(`${SpaceportPortrait} image`);
-      }
-      if (currentDataName === TechNames.SpaceCapsule) {
-        setSource(SpaceCapsulePortrait);
-        setAltText(`${SpaceCapsulePortrait} image`);
-      }
-    }
-  };
-
-  useEffect(() => {
-    if (scope.current !== null) {
-      // RUN EXIT ANIMATION FOR OLD IMAGE
-      if (runAnimate && techDataName !== currentDataName) {
-        const exitAnimation = async () => {
-          await animate(scope.current, { opacity: 0 }, { duration: 0.3 });
-          setCurrentDataName(techDataName);
-        };
-        exitAnimation();
-      }
-      setRunAnimate(false);
-    }
-  }, [runAnimate]);
-
-  useEffect(() => {
-    if (scope.current !== null) {
-      // CHANGE TO CURRENT PICTURE
-      pickImage(currentDataName);
-      // RUN ENTRY ANIMATION WHEN IMAGE CHANGES
-      scope.current.style.opacity = "0";
-      const enterAnimation = async () => {
-        await animate(scope.current, { opacity: 0 });
-        await animate(scope.current, { opacity: 1 }, { duration: 0.3 });
-      };
-      enterAnimation();
-    }
-  }, [currentDataName]);
-
-  useEffect(() => {
-    pickImage(currentDataName);
-  }, [imagesPreloaded, isMediumScreen, isLargeScreen]);
+  const images = Object.values(data).map((image, index) => {
+    return (
+      <motion.div
+        key={`${image.name}-image-element`}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, transition: { duration: 0.3 } }}
+        exit={{ opacity: 0 }}
+        className="w-full mt-10 md:mt-20 lg:col-start-3 lg:justify-self-end lg:mt-0 lg:w-[550px]"
+      >
+        {isLargeScreen ? (
+          <img
+            className="w-full h-full"
+            src={portraitImages[index]}
+            alt={`${image.name}-image-portrait`}
+          />
+        ) : (
+          <img
+            className="w-full h-full"
+            src={landscapeImages[index]}
+            alt={`${image.name}-image-portrait`}
+          />
+        )}
+      </motion.div>
+    );
+  });
 
   if (!imagesPreloaded) {
     return <></>;
   }
 
   return (
-    <div
-      ref={scope}
-      className="w-full mt-10 md:mt-20 lg:col-start-3 lg:justify-self-end lg:mt-0 lg:w-[550px]"
-    >
-      <img className="w-full h-full" src={source} alt={altText} />
-    </div>
+    <AnimatePresence mode="wait">
+      {techDataName === data[0].name && images[0]}
+      {techDataName === data[1].name && images[1]}
+      {techDataName === data[2].name && images[2]}
+    </AnimatePresence>
   );
 };
 

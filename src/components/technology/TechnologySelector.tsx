@@ -5,15 +5,9 @@ type Props = {
   data: Technology[];
   selectedTech: Technology;
   setSelectedTech: (value: Technology) => void;
-  setRunAnimate: (value: boolean) => void;
 };
 
-const TechnologySelector = ({
-  data,
-  selectedTech,
-  setSelectedTech,
-  setRunAnimate,
-}: Props) => {
+const TechnologySelector = ({ data, selectedTech, setSelectedTech }: Props) => {
   const buttonStyle =
     "rounded-full w-[60px] h-[60px] text-[28px] border-white/25 border-2 transition duration-500 lg:w-[80px] lg:h-[80px] lg:text-[38px] hover:border-white";
   const selectedStyle = "bg-white text-black border-white";
@@ -30,7 +24,6 @@ const TechnologySelector = ({
         }`}
         onClick={() => {
           setSelectedTech(data[0]);
-          setRunAnimate(true);
         }}
       >
         1
@@ -41,7 +34,6 @@ const TechnologySelector = ({
         }`}
         onClick={() => {
           setSelectedTech(data[1]);
-          setRunAnimate(true);
         }}
       >
         2
@@ -52,7 +44,6 @@ const TechnologySelector = ({
         }`}
         onClick={() => {
           setSelectedTech(data[2]);
-          setRunAnimate(true);
         }}
       >
         3

@@ -1,70 +1,46 @@
-import { useState, useEffect } from "react";
 import { Technology } from "../../shared/types";
-import { useAnimate, stagger } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { container, child } from "../../shared/animations";
 
 type Props = {
+  data: Technology[];
   selectedTech: Technology;
-  runAnimate: boolean;
-  setRunAnimate: (value: boolean) => void;
 };
 
-const TechnologyDescription = ({
-  selectedTech,
-  runAnimate,
-  setRunAnimate,
-}: Props) => {
-  const [currentData, setCurrentData] = useState<Technology>(selectedTech);
-  const [scope, animate] = useAnimate();
-
-  useEffect(() => {
-    // RUN EXIT ANIMATION FOR NEW DATA
-    if (runAnimate && selectedTech.name !== currentData.name) {
-      const exitAnimation = async () => {
-        await animate(
-          scope.current,
-          { opacity: 0, x: "-100px" },
-          { duration: 0.2 }
-        );
-        setCurrentData(selectedTech);
-      };
-      exitAnimation();
-    }
-    setRunAnimate(false);
-  }, [runAnimate]);
-
-  useEffect(() => {
-    // RUN ENTRY ANIMATION WHEN DATA CHANGES
-    scope.current.style.opacity = "0";
-    const enterAnimation = async () => {
-      animate(scope.current, { opacity: 0, x: "0" });
-      await animate(
-        ".animate-item",
-        { opacity: 0, x: "100px" },
-        { duration: 0.1 }
-      );
-      animate(scope.current, { opacity: 1 }, { duration: 0.1 });
-      await animate(
-        ".animate-item",
-        { opacity: 1, x: "0" },
-        { duration: 0.3, delay: stagger(0.2) }
-      );
-    };
-    enterAnimation();
-  }, [currentData]);
+const TechnologyDescription = ({ data, selectedTech }: Props) => {
+  const descriptions = Object.values(data).map((description) => {
+    return (
+      <motion.div
+        key={`${description.name}-description`}
+        variants={container}
+        initial="hidden"
+        animate="show"
+        exit="leave"
+        className="text-center w-5/6 h-[300px] mx-auto mt-2 mb-2 md:w-3/5 md:mb-20 lg:text-left lg:w-full lg:mt-0 lg:h-auto"
+      >
+        {/* Intro */}
+        <motion.h4
+          variants={child}
+          className="animate-item md:text-[48px] lg:text-[64px]"
+        >
+          {description.name.toUpperCase()}
+        </motion.h4>
+        <motion.p
+          variants={child}
+          className="text-light-violet mt-5 animate-item"
+        >
+          {description.description}
+        </motion.p>
+      </motion.div>
+    );
+  });
 
   return (
-    <div
-      ref={scope}
-      className="text-center w-5/6 h-[300px] mx-auto mt-2 mb-2 md:w-3/5 md:mb-20 lg:text-left lg:w-full lg:mt-0 lg:h-auto"
-    >
-      {/* Intro */}
-      <h4 className="animate-item md:text-[48px] lg:text-[64px]">
-        {currentData.name.toUpperCase()}
-      </h4>
-      <p className="text-light-violet mt-5 animate-item">
-        {currentData.description}
-      </p>
-    </div>
+    <AnimatePresence mode="wait">
+      {selectedTech.name === data[0].name && descriptions[0]}
+      {selectedTech.name === data[1].name && descriptions[1]}
+      {selectedTech.name === data[2].name && descriptions[2]}
+    </AnimatePresence>
   );
 };
 

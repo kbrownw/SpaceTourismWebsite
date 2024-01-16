@@ -4,15 +4,9 @@ type Props = {
   data: Crew[];
   crewData: Crew;
   setCrewData: (value: Crew) => void;
-  setRunAnimate: (value: boolean) => void;
 };
 
-const CrewSelector = ({
-  data,
-  crewData,
-  setCrewData,
-  setRunAnimate,
-}: Props) => {
+const CrewSelector = ({ data, crewData, setCrewData }: Props) => {
   const defaultClasses =
     "py-2 px-2 rounded-full bg-white  transition duration-500 hover:opacity-50 tap:opacity-50";
   return (
@@ -23,7 +17,6 @@ const CrewSelector = ({
         }`}
         onClick={() => {
           setCrewData(data[0]);
-          setRunAnimate(true);
         }}
       ></button>
       <button
@@ -32,7 +25,6 @@ const CrewSelector = ({
         }`}
         onClick={() => {
           setCrewData(data[1]);
-          setRunAnimate(true);
         }}
       ></button>
       <button
@@ -41,7 +33,6 @@ const CrewSelector = ({
         }`}
         onClick={() => {
           setCrewData(data[2]);
-          setRunAnimate(true);
         }}
       ></button>
       <button
@@ -50,7 +41,6 @@ const CrewSelector = ({
         }`}
         onClick={() => {
           setCrewData(data[3]);
-          setRunAnimate(true);
         }}
       ></button>
     </div>

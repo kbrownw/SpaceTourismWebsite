@@ -8,7 +8,7 @@ type Props = {
 
 const Home = ({ setSelectedPage }: Props) => {
   return (
-    <motion.section
+    <section
       key="home-page"
       className="flex flex-col min-h-fit items-center mx-auto mt-[108px] gap-24 pb-24 w-5/6  md:w-3/5 lg:flex-row lg:w-full lg:gap-[25%] lg:mt-[200px] lg:pl-36 lg:mx-0"
     >
@@ -51,7 +51,7 @@ const Home = ({ setSelectedPage }: Props) => {
           <h4 className="text-black">EXPLORE</h4>
         </Link>
       </motion.div>
-    </motion.section>
+    </section>
   );
 };
 
