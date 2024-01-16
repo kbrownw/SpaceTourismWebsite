@@ -28,7 +28,7 @@ Users should be able to:
 
 ![HomePage](image.png)
 ![Destinations](image-1.png)
-![Crew](image-2.png)
+![Crew](crew.png)
 ![Technology](image-3.png)
 
 ### Links
