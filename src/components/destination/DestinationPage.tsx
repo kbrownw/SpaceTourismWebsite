@@ -1,4 +1,3 @@
-import { AnimatePresence } from "framer-motion";
 import { Destinations } from "../../shared/types";
 import { useState } from "react";
 import DestinationDescription from "./DestinationDescription";
@@ -8,6 +7,7 @@ import EuropaImage from "../../assets/images/destination/image-europa.png";
 import TitanImage from "../../assets/images/destination/image-titan.png";
 import DestinationImage from "./DestinationImage";
 import useImagePreloader from "../../hooks/useImagePreloader";
+import DestinationSelector from "./DestinationSelector";
 
 interface Props {
   data: Destinations[];
@@ -16,16 +16,7 @@ interface Props {
 const preloadSrcList: string[] = [MoonImage, MarImage, EuropaImage, TitanImage];
 
 function DestinationPage({ data }: Props) {
-  const [runAnimate, setRunAnimate] = useState<boolean>(false);
-  const moonData = data[0];
-  const marsData = data[1];
-  const europaData = data[2];
-  const titanData = data[3];
-  const selected: string = "text-white border-b-white";
-  const unSelected: string = "text-light-violet";
-  const selectionDefault: string =
-    "text-[18px] py-3 border-transparent border-b-2 transition duration-500 hover:border-b-white/50 ";
-  const [celestialBody, setCelestialBody] = useState<Destinations>(moonData);
+  const [celestialBody, setCelestialBody] = useState<Destinations>(data[0]);
   const { imagesPreloaded } = useImagePreloader(preloadSrcList);
 
   if (!imagesPreloaded) {
@@ -37,113 +28,22 @@ function DestinationPage({ data }: Props) {
       <div className="w-full text-center md:text-left lg:w-1/2">
         {/* IMAGE */}
         <div className="w-2/3 my-10 mx-auto md:w-1/2 lg:w-full lg:px-20 lg:py-10">
-          <AnimatePresence>
-            {celestialBody.name === moonData.name && (
-              <DestinationImage source={MoonImage} alt="moon-image" />
-            )}
-            {celestialBody.name === marsData.name && (
-              <DestinationImage source={MarImage} alt="mars-image" />
-            )}
-            {celestialBody.name === europaData.name && (
-              <DestinationImage source={EuropaImage} alt="europa-image" />
-            )}
-            {celestialBody.name === titanData.name && (
-              <DestinationImage source={TitanImage} alt="titan-image" />
-            )}
-          </AnimatePresence>
+          <DestinationImage
+            data={data}
+            preLoadSrcList={preloadSrcList}
+            celestialBody={celestialBody}
+          />
         </div>
       </div>
       <div className="flex flex-col text-center justify-center md:mx-auto md:max-w-[80%] lg:w-1/2">
         {/* DATA SELECTION MENU */}
-        <div className="flex mx-auto justify-between gap-7 my-5 md:gap-10 lg:justify-normal lg:mx-0">
-          <button
-            onClick={() => {
-              setCelestialBody(moonData);
-              setRunAnimate(true);
-            }}
-          >
-            <h5
-              className={`${
-                celestialBody.name === moonData.name ? selected : unSelected
-              } ${selectionDefault}`}
-            >
-              MOON
-            </h5>
-          </button>
-          <button
-            onClick={() => {
-              setCelestialBody(marsData);
-              setRunAnimate(true);
-            }}
-          >
-            <h5
-              className={`${
-                celestialBody.name === marsData.name ? selected : unSelected
-              } ${selectionDefault}`}
-            >
-              MARS
-            </h5>
-          </button>
-          <button
-            onClick={() => {
-              setCelestialBody(europaData);
-              setRunAnimate(true);
-            }}
-          >
-            <h5
-              className={`${
-                celestialBody.name === europaData.name ? selected : unSelected
-              } ${selectionDefault}`}
-            >
-              EUROPA
-            </h5>
-          </button>
-          <button
-            onClick={() => {
-              setCelestialBody(titanData);
-              setRunAnimate(true);
-            }}
-          >
-            <h5
-              className={`${
-                celestialBody.name === titanData.name ? selected : unSelected
-              } ${selectionDefault}`}
-            >
-              TITAN
-            </h5>
-          </button>
-        </div>
+        <DestinationSelector
+          data={data}
+          celestialBody={celestialBody}
+          setCelestialBody={setCelestialBody}
+        />
         {/* CELESTIAL BODY INFORMATION */}
-        <AnimatePresence>
-          {celestialBody.name === moonData.name && (
-            <DestinationDescription
-              data={celestialBody}
-              runAnimate={runAnimate}
-              setRunAnimate={setRunAnimate}
-            />
-          )}
-          {celestialBody.name === marsData.name && (
-            <DestinationDescription
-              data={celestialBody}
-              runAnimate={runAnimate}
-              setRunAnimate={setRunAnimate}
-            />
-          )}
-          {celestialBody.name === europaData.name && (
-            <DestinationDescription
-              data={celestialBody}
-              runAnimate={runAnimate}
-              setRunAnimate={setRunAnimate}
-            />
-          )}
-          {celestialBody.name === titanData.name && (
-            <DestinationDescription
-              data={celestialBody}
-              runAnimate={runAnimate}
-              setRunAnimate={setRunAnimate}
-            />
-          )}
-        </AnimatePresence>
+        <DestinationDescription data={data} celestialBody={celestialBody} />
       </div>
     </section>
   );
